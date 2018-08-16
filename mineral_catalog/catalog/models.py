@@ -38,7 +38,7 @@ class Mineral(models.Model):
     # example: "Pink"
     streak = models.CharField(max_length=255)
     # example: "Semitransparent"
-    diapheneity = models.CharField(max_length=255)
+    diaphaneity = models.CharField(max_length=255)
     # example: "Biaxial"
     optical_properties = models.CharField(max_length=255)
     # example: "Organic Minerals"
