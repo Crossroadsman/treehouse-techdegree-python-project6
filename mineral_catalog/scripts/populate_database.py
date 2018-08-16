@@ -26,12 +26,15 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mineral_catalog.settings")
 # makes it possible to load models etc
 application = get_wsgi_application()
 
+# the following line is strictly a PEP8 E402 violation but this structure
+# seems to be standard for creating standalone scripts in Django projects
+from catalog.models import Mineral
+
 # set the working directory
 # (this ensures that relative paths work no matter where in the filesystem
 # we are when we run this script)
 os.chdir(BASE_DIR)
 
-from catalog.models import Mineral
 
 logging.basicConfig(
     filename='populate_database.log',
@@ -49,10 +52,11 @@ def file_to_dicts():
         objects = json.load(file_handle)
         return objects
 
+
 def clean_data(dictionary):
     name_map = {
         'image filename': 'image_filename',
-        'image caption' : 'image_caption',
+        'image caption': 'image_caption',
         'strunz classification': 'strunz_classification',
         'crystal system': 'crystal_system',
         'unit cell': 'unit_cell',
@@ -71,20 +75,16 @@ def clean_data(dictionary):
             logging.info(msg)
     return dictionary
 
+
 def create_instance(**kwargs):
     Mineral.objects.create(**kwargs)
+
 
 def populate_database():
     objects = file_to_dicts()
     for object in objects:
         cleaned = clean_data(object)
         create_instance(**cleaned)
-
-# open file
-# read JSON
-# convert JSON to dictionary
-# create model instance from dict item
-# save model instance
 
 # ---------------------------------
 
