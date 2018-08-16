@@ -1,0 +1,14 @@
+{% load static from staticfiles %}
+
+<!doctype html>
+<html>
+  <head>
+    <title>Minerals | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+  </head>
+
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
