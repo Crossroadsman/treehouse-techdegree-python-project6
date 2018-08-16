@@ -1,15 +1,16 @@
 {% extends 'layout.html' %}
+{% load static %}
 
-{% block title %}DETAIL{% endblock %}
+{% block title %}{{ mineral.name }}{% endblock %}
 
 {% block content %}
-<div class="grid-100">
-    <ul class="minerals__container">
-      {% for mineral in minerals %}
-        <li class="minerals__item">
-          <a class="minerals__anchor" href="URL TBD (DETAIL)">{{ mineral.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
+  <div class="grid-100 mineral__container">
+    <h1 class="mineral__name">{{ mineral.name }}</h1>
+    <div class="mineral__image-bg">
+      {% with 'img/'|add:mineral.image_filename as image_path %}
+        <img class="mineral__image" src="{% static image_path %}">
+      {% endwith %}
+      <p class="mineral__caption">{{ mineral.image_caption }}</p>
+    </div>
   </div><!-- close grid-100 -->
 {% endblock %}

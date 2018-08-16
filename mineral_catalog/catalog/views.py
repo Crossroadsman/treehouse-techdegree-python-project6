@@ -11,6 +11,7 @@ def index(request):
 
 def detail(request, mineral_id):
     mineral = Mineral.objects.get(pk=mineral_id)
+
     template = 'catalog/detail.html'
     context = {'mineral': mineral}
     return render(request, template, context)
