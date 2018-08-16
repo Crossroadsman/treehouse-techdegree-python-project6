@@ -1,4 +1,6 @@
-from django.shortcuts import render
+import random
+
+from django.shortcuts import render, redirect
 
 from .models import Mineral
 
@@ -11,7 +13,19 @@ def index(request):
 
 def detail(request, mineral_id):
     mineral = Mineral.objects.get(pk=mineral_id)
+    exclude = ['id']
+    top_section = ['name', 'image_filename', 'image_caption']
+
 
     template = 'catalog/detail.html'
-    context = {'mineral': mineral}
+    context = {'mineral': mineral,
+               'exclude': exclude,
+               'top_section': top_section,}
     return render(request, template, context)
+
+def random_mineral(request):
+    minerals = Mineral.objects.all()
+    count = minerals.count()
+    index = random.randrange(count)
+    mineral = minerals[index]
+    return redirect('catalog:detail', mineral_id=mineral.pk)

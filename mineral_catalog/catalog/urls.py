@@ -22,5 +22,6 @@ from . import views
 app_name='catalog'
 urlpatterns = [
     path('', views.index, name='index'),
-    re_path('^mineral/(?P<mineral_id>\d+)', views.detail, name='detail')
+    re_path('^mineral/(?P<mineral_id>\d+)', views.detail, name='detail'),
+    re_path('^random$', views.random_mineral, name='random'),
 ]

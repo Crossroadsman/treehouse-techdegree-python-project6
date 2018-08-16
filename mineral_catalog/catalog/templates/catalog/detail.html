@@ -11,6 +11,19 @@
         <img class="mineral__image" src="{% static image_path %}">
       {% endwith %}
       <p class="mineral__caption">{{ mineral.image_caption }}</p>
-    </div>
+    </div><!-- close image -->
+    <div class="mineral__table-container">
+      <table class="mineral__table">
+        {% for key, value in mineral.fieldnames_and_values.items %}
+          {% if key not in exclude and key not in top_section %}
+          <tr>
+            <td class="mineral__category">{{ value.name|title }}</td>
+            <td>{{ value.value|safe }}</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+    </div><!-- close table -->
+
   </div><!-- close grid-100 -->
 {% endblock %}
