@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_nose'
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,16 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
+
+# Nose Settings
+# See: https://django-testing-docs.readthedocs.io/en/latest/coverage.html
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose which apps to measure coverage
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=catalog',  # packages can be comma-separated
+    '--cover-html',  # generate HTML coverage report
+]
