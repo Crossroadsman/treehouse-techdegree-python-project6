@@ -189,9 +189,6 @@ class DetailViewTests(TestCase):
         for field in highlighted_fields:
             self.assertIn(field, self.response.context['highlighted'])
 
-    def test_detail_view_does_not_render_excluded_fields(self):
-        pass
-
     def test_detail_view_renders_top_section_before_highlighted(self):
         test_string = str(self.response.content)
         self.assertLess(
@@ -250,7 +247,6 @@ class RandomMineralViewTests(TestCase):
         final_redirect = self.response.redirect_chain[-1][0]
         self.assertEqual(
             final_redirect,
-            reverse('catalog:detail', 
+            reverse('catalog:detail',
                     kwargs={'mineral_id': final_redirect[-1]})
         )
-
