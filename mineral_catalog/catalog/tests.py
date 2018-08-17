@@ -41,4 +41,11 @@ class MineralModelTests(TestCase):
         )
 
     def test_fieldnames_and_values_returns_valid_data(self):
-        pass
+        test_fieldnames_and_values = self.test_mineral.fieldnames_and_values()
+        for key, value in self.test_mineral_data.items():
+            self.assertIn(key, test_fieldnames_and_values)
+            self.assertEqual(value, test_fieldnames_and_values[key]['value'])
+            self.assertEqual(
+                key.replace('_', ' '),
+                test_fieldnames_and_values[key]['name']
+            )
