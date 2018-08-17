@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
+{% load static %}
 
-{% block title %}INDEX{% endblock %}
+{% block title %}Minerals List{% endblock %}
+{% block custom_css %}
+  <link rel="stylesheet" href="{% static 'catalog/css/catalog.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="grid-100">

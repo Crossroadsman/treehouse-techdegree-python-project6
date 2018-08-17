@@ -15,12 +15,14 @@ def detail(request, mineral_id):
     mineral = Mineral.objects.get(pk=mineral_id)
     exclude = ['id']
     top_section = ['name', 'image_filename', 'image_caption']
+    highlighted = ['category', 'group']
 
 
     template = 'catalog/detail.html'
     context = {'mineral': mineral,
                'exclude': exclude,
-               'top_section': top_section,}
+               'top_section': top_section,
+               'highlighted': highlighted,}
     return render(request, template, context)
 
 def random_mineral(request):
