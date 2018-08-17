@@ -245,7 +245,7 @@ class RandomMineralViewTests(TestCase):
         self.test_mineral_2.save()
         self.response = self.client.get(reverse('catalog:random'), follow=True)
 
-    def test_random_mineral_view_redirects_to_correct_detail(self):
+    def test_random_mineral_view_redirects_to_valid_detail(self):
         self.assertEqual(self.response.status_code, 200)
         final_redirect = self.response.redirect_chain[-1][0]
         self.assertEqual(
