@@ -42,12 +42,17 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
+# if we were using this on a non-unix system we would need to change this construction to
+# one using os.join
 FILENAME = '../data/minerals.json'
 
 
 def file_to_dicts():
     """opens FILENAME, a json file that can be decoded to a list of dicts
     and returns the decoded list of dicts"""
+    # Note if we were going to use a non-Unix system, the text encoding might not be UTF-8 so we would
+    # have to add the argument:
+    # encoding='utf-8'
     with open(FILENAME) as file_handle:
         objects = json.load(file_handle)
         return objects
